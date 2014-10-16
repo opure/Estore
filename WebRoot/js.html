@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<form action="" name="ff">
+	<input type="text" name="xx" id="aa" />
+	<input type="button" value="Ceshi" onclick="check()"/>
+</form>
+	<script type="text/javascript">
+		//长度6-8 第一位必须是大写字母  结束必须是数字
+function check(){
+		
+		if(/^[A-Z]\w{4,6}[0-9]$/.test(document.ff.xx.value)){
+			alert("字符串有效");
+		}else{
+			alert("字符串无效");
+		}
+		}
+	</script>
+</body>
+</html>

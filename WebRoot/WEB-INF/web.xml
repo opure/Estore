@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>estore12</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/index.jsp</location>
+  </error-page>
+  <!-- servlet的类名以及其在当前文件中的名字 -->
+  <servlet>
+  <!-- 此处写此servlet在当前文件中的名字 可随意指定 -->
+  	<servlet-name>goudan</servlet-name>
+  	<!-- 此处写目标servlet类的全名 -->
+  	<servlet-class>com.briup.estore.web.servlet.BasicServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet2</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.LoginServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductListServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ProductListServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductListServlet2</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ProductListServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductDetailServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ProductDetailServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.TestServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddChartServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.AddChartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateCartServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.UpdateCartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RemoveProductServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.RemoveProductServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RemoveAllChartServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.RemoveAllChartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AjaxServletTest</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.AjaxServletTest</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CheckUserNameServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.CheckUserNameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ConfirmOrderServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ConfirmOrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ListOrderFormServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ListOrderFormServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowOrderFormDetailServlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.ShowOrderFormDetailServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Modifyservlet</servlet-name>
+    <servlet-class>com.briup.estore.web.servlet.Modifyservlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- servlet资源和访问url之间的映射或者说对应关系 -->
+  <servlet-mapping>
+  <!-- 某个要被映射的servlet资源名 注意是本文件中的资源名 比如说goudan  不是类名 -->
+  	<servlet-name>goudan</servlet-name>
+  	<!-- 此资源的访问url 格式如下 /xx[/..] -->
+  	<url-pattern>/goudan</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet2</servlet-name>
+    <url-pattern>/LoginServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductListServlet</servlet-name>
+    <url-pattern>/ProductListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductListServlet2</servlet-name>
+    <url-pattern>/ProductListServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductDetailServlet</servlet-name>
+    <url-pattern>/ProductDetailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddChartServlet</servlet-name>
+    <url-pattern>/AddChartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateCartServlet</servlet-name>
+    <url-pattern>/UpdateCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RemoveProductServlet</servlet-name>
+    <url-pattern>/RemoveProductServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RemoveAllChartServlet</servlet-name>
+    <url-pattern>/RemoveAllChartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AjaxServletTest</servlet-name>
+    <url-pattern>/AjaxServletTest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckUserNameServlet</servlet-name>
+    <url-pattern>/CheckUserNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConfirmOrderServlet</servlet-name>
+    <url-pattern>/user/ConfirmOrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListOrderFormServlet</servlet-name>
+    <url-pattern>/user/ListOrderFormServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowOrderFormDetailServlet</servlet-name>
+    <url-pattern>/user/ShowOrderFormDetailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Modifyservlet</servlet-name>
+    <url-pattern>/servlet/Modifyservlet</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>com.briup.estore.web.filter.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  			<filter-name>LoginFilter</filter-name>
+  			<url-pattern>/LoginServlet2</url-pattern>
+  </filter-mapping>
+</web-app>

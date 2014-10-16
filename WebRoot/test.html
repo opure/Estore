@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<input type="text" name="" id="xx" onkeyup="check(this.value)"/><span id="xxspan">长度为6-8</span><br/>
+	<input type="text" name="" id="aa" />
+	<script type="text/javascript">
+		var xx=document.getElementById("xx");
+		var xxspan=document.getElementById("xxspan");
+		function check(v){
+			var reg=/^\w{6,8}$/;
+			if(reg.test(v)){
+				//如果获取的元素没有value属性 
+				//那么不可以使用xx.value来进行值的获取或者修改
+				xxspan.innerHTML="<b style='color:red'>OK</b>";
+			}else{
+				xxspan.innerHTML="长度为6-8";
+			}
+		}
+	</script>
+</body>
+</html>

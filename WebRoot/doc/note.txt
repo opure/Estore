@@ -1,0 +1,142 @@
+JSP中常见跳转方式
+重定向跳转
+	response.sendRedirect("") 
+	浏览器地址会发生变化 且丢失request里面所有的信息 
+	因为发送了两次请求
+服务器内部跳转
+	浏览器地址维持上次请求的地址  
+	但是内容会发生变化 且request里面的信息不回丢失
+	request.getRequestDispatcher("").forward(request,response);
+	<jsp:forward page=""></jsp:forward>
+访问javaweb项目的大概流程
+	根据url去寻找指定服务器是否有相应资源 
+	如果没有的话 报404
+	如果有的话 分两种情况
+		1.文件类资源
+			图片  文本 html  jsp等页面
+		http://localhost:8888/es/index.jsp
+		直接将文件内容呈现回去
+		2.代码类资源  
+			Servlet  Action  Filter Listener  java类
+			http://localhost:8888/es/BasicServlet
+			需要从web.xml里面去查找此名字对应的资源
+Servlet类定义
+	extends HttpServlet  最常用  熟练掌握
+	implements Servlet   了解
+	extends GenericServlet 了解
+	
+	HttpServlet 继承GenericServlet
+	GenericServlet 实现Servlet接口
+Servlet类写好之后要想被访问到 需要配置访问路径
+访问路径决定你要怎样在浏览器里面写地址
+	1.annotation  @WebServlet
+	2.在web.xml里面自己配置
+在HttpServlet中处理请求的方法是doXXX方法
+比如doGet  处理get请求
+比如doPost  处理doPost请求
+但是只有有一个service方法  那么不管什么样的方式请求都可以处理
+
+http://localhost:8888/estore/login.jsp
+	http://localhost:8888/estore/servlet/LoginServlet
+	sendRedirect("index.jsp")
+	http://localhost:8888/estore/servlet/index.jsp
+	http://localhost:8888/estore/servlet/LoginServlet
+	sendRedirect("../index.jsp")
+	http://localhost:8888/estore/index.jsp
+myeclipse中web项目和服务器上目录的对应结构
+	服务器默认会生成一个与本地工作空间项目同名的文件夹 可以通过修改context-root
+	webroot下的所有内容会自动复制到服务器项目的根文件夹下
+	src下的所有类编译后的class自动复制到web-inf下的classes文件夹
+	src下的文件 比如说jdbc.properties也自动复制到WEB-INF下的classes文件夹
+=================================
+以登陆为例
+	一般流程应该如下，
+	1.用户输入用户名密码点击登录，
+	此时应该检测用户是否提交的是空白	此项由JS完成 
+	2.提交之后 LoginServlet接受用户输入的内容，但是不做任何逻辑判断
+	3.Service层负责逻辑判断，login方法接受LoginServlet传来的用户名
+	和密码  然后调用dao层的相关方法查看数据库是否有此数据，根据情况
+	的不同返回不同的结果
+======================
+servlet向JSP页面传递信息
+	内部跳转
+	request.getRequestDispatcher("").forward();
+	servlet中可以使用request.setAttribute("key","value");
+	jsp页面上可以通过使用request.getAttribute("key")的方式获取之前的值
+	重定向跳转  request对象会被重构  所以之前请求的内容都会丢失
+		response.sendRedirect();
+		servlet使用request.getSession获取session对象
+		然后通过session.setAttribute("key",value)的方式将值放进去
+		JSP页面使用session.getAttribute("key")来获取
+===================
+查看商品列表
+	ProductListServlet 负责提取后台查找到的所有的商品 并将其显示到productList.jsp
+	ProductService  调用dao的方法查找所有的商品
+	ProductDao  从数据库查找所有的商品
+	
+	
+	productList.jsp
+		取出session中的商品集合  根据里面商品的个数决定显示几行
+======================
+使用jstl标签库可以减少页面上的java代码 
+先导入标签库
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:if test="${}">xxxxx</c:if>
+test后面写表达式   一般是el表达式
+如果表达式返回true则执行内部代码 反之直接忽略
+===============================
+查看商品详情
+	ProductDetailServlet
+			如果存在指定商品  显示到productDetail.jsp里
+			如果不存在  将提示信息放到session里面 并跳转到ProductListServlet2
+			以便显示当前所有的商品 
+				session里面会有一个叫做error的错误信息
+				ProductList.jsp会判断此信息是否为空 如果不为空 就alert
+			但是  login,jsp同样会判定是否有一个叫做error的信息  
+			所以会导致在登录的时候打出之前的错误信息
+===================
+加入购物车
+	内存中保存一个购物车对象 每次添加商品的时候都操纵这个购物车对象
+		购物车对象内部维护一个map对象 key为商品的id  value为个数
+		代表某个商品买了多少件
+查看购物车
+	shopcart.jsp	
+		根据之前购物车对象里面的map将对应记录转化为订单项对象
+		订单项对象是用来记录你具体买了什么商品以及此商品的个数
+		OrderLines对象
+		getOrderLines方法用来返回所有的订单项对象
+		页面遍历此集合即可实现查看购物车的效果
+===========================
+<base href="<%=basePath%>">
+页面上所有的相对路径均以此路径为准 与当前文件位置无任何关系
+=========================
+js正则表达式
+	var x=/\w/ig;
+	i ignore代表匹配的时候忽略大小写
+	g  global 全局匹配模式
+	
+	相关方法
+		正则表达式的test方法  返回指定字符串是否与当前表达式匹配 
+		eg:
+			/\w/.test("a")返回true；
+			/\d/.test("a")返回false；
+			/[a-z]/.test("A")返回false
+			/[a-z]/i.test("A")返回true
+		字符串对象和正则表达式相关的方法为match  search等  
+		match方法返回匹配的所有(有字母g时)或者部分字符串  取决于是否为global模式
+		"avc123".match(/\d/) 返回数字1  
+		"avc123".matct(/\d/g)返回 1,2,3	
+		^代表从开始位置查找  $代表到结束位置
+		/\d+/.test("asdasf1324");返回为true  因为1234和/d+可以匹配上
+		/^\d+$/.test("asdasf1324")返回为false  因为要求开始和结束之间只能出现数字
+==================
+关于乱码
+	1.先确定contenttype  jsp的page指令 以及文件编码等是否一致
+	2根据不同请求方式进行修改
+		如果是post提交
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+		如果是get提交
+			在服务器conf目录下的server.xml
+			找当时你修改端口的地方  添加URIEncoding="UTF-8"属性

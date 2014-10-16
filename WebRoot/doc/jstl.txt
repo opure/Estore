@@ -1,0 +1,150 @@
+1、<c:out> 
+	功能: 将结果输出到JspWriter输出流中
+	1) 语法1: <c:out value="result" 
+		[escapeXml]="{true|false}" 
+		[default="defaultValue"]/>
+	   如果result为null，则输出default中的值
+
+	2) 语法2: <c:out value="result" 
+			[escapeXml]="{true|false}">
+			default value
+	   	  </c:out>
+
+	例如: <c:out value="${student.address.country}"/>
+	      等于
+	      ${student.address.country}
+
+2、<c:set>
+	功能: 在某个范围中设置某个值或者设置某个对象的属性值
+	1) 在某个范围中设置某个值
+		语法1: <c:set var="varName" value="attrValue" 
+				[scope="page|request|session|application"]/>
+		等于
+		scope.setAttribute("varName",attrValue);
+		varName --> 存放在scope中的key 
+		attrValue --> 存放在scope中的value
+
+		例如:  <c:set var="name" value="jack" 
+					scope="request"/>
+                        等于
+			request.setAttribute("name","jack");
+
+		       <c:set var="addr" value="${address}" 
+					scope="request"/>
+			等于
+			request.setAttribute("addr",address);
+
+		语法2: <c:set var="varName" [scope]>
+		 	   attrValue
+		       </c:set>
+
+		注意: scope为存放范围，默认为page。  
+	
+	2) 设置某个对象的属性值，例如: 
+		语法1: <c:set target="${student}"
+				property="name" value="jack"/>
+	
+		语法2: <c:set target="${student}" property="name">
+			   jack
+		       </c:set>
+		
+		注意: 属性scope不能在这里使用。
+
+3、<c:remove>
+	功能: 删除某个范围中的某个值
+	语法: <c:remove var="varName" 
+			[scope="page|...."]/>
+		等于	
+	      scope.removeAttribute("varName");
+	      varName --> 该值存放在scope中的key
+    	     
+	注意: 在指定scope中根据varName来删除某个值，
+	如果没有指定scope，那么依次从page、request、
+	session和application范围中根据varName去删除
+	某个值。
+
+4、<c:catch> 
+	功能: 捕获由嵌套在它里面的代码抛出的异常
+    	语法: <c:catch [var="varName"]>
+		 nested code
+	      </c:catch>
+	     varName --> 异常对象存放在scope中的key，scope默认为page。
+
+5、<c:if>
+	功能: 进行条件判断
+	语法:   <c:if test="condition" var="varName" [scope]>
+		 	body content
+		 </c:if>
+	      varName --> 条件判断结果(布尔型变量)存放在scope中的key，scope为存放范围。
+
+6、<c:choose>
+	功能: 用于条件选择，它和<c:when>以及<c:otherwise>一起使用
+	语法:   <c:choose>
+		        (<when> and <otherwise>)
+		</c:choose>
+	注意: body体内容只能由以下的元素构成
+		1) 空格
+		2) 0个或者多个<when>子标签，<when>必须出现在<c:choose>和<c:ohterwise>之间
+		3) 0个或者多个<ohterwise>
+
+7、<c:when>
+	功能: 代表了<c:choose>的一个分支
+	语法: <c:when test="condition">
+		  body content
+	      </c:when>
+	注意: 必须以<c:choose>作为它的父标签，必须在<c:otherwise>之前出现。
+
+8、<c:otherwise>
+	功能: <c:choose>的最后的选择
+	语法: <c:otherwise>
+		body 
+	      </c:otherwise>	
+	注意: 必须以<c:choose>作为父标签，必须是<c:choose>的最后分支
+
+9、迭代标签
+	1) <c:forEach>
+		功能: 用来迭代集合、数组、枚举、Iterator或者固定次数
+		语法1: 	<c:forEach [var="varName"] items="Collection/array/Enumaration/Iterator"
+				[varStatus="varStatusName"]
+				[begin="begin"] 
+				[end="end"]
+				[step="step"]>
+	   		   body content
+			</c:forEach>
+
+   		语法2: 迭代固定的次数(做普通的循环输出,类似for循环)
+			<c:forEach [var="varName"] 										[varStatus="varStatusName"] 
+				begin="begin" end="end" [step="step"]>
+		   	   body content
+			</c:forEach>
+
+		名字		类型		描述
+		for(String s:list){
+			
+		}
+		var		String		迭代出来的值存放在scope中的key
+		items	     任何支持的类型	将要迭代itmes的集合/数组/枚举/Iterator
+		varStatus	String		迭代的状态，可以访问迭代的自身信息
+		current当前这次迭代的（集合中的）项
+		index当前这次迭代从 0 开始的迭代索引
+		count当前这次迭代从 1 开始的迭代计数
+		first用来表明当前这轮迭代是否为第一次迭代的标志
+		last用来表明当前这轮迭代是否为最后一次迭代的标志
+		
+		begin		int		items从index[begin]开始迭代
+						没有指定items从index开始做循环
+		end 		int 		items从index[end]结束
+						没有指定items从end结束
+		step		int		迭代的步长(>0)
+
+		5行2列
+		序号  值
+
+	2) <c:forTokens>
+		功能: 类似java中的StringTokenizer，专门用于处理TokenString的迭代，可以指定一个或者多个分隔符号(delimiters)。
+		语法: <c:forTokens items="stringOfTokens" 
+				delims="delimiters"
+				[var="varName"] 										[varStatus="varStatusName"] 
+				[begin="begin"] [end="end"] 									[step="step"]>
+			   body content
+		      </c:forTokens>
